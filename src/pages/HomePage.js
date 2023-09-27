@@ -1,27 +1,30 @@
-import { Card, Layout } from 'antd';
-import { useState, useEffect } from 'react';
+import { Layout } from 'antd';
+import { API } from 'aws-amplify';
+import React, { useState, useEffect } from 'react';
+
+const myAPI = "episodes";
+const path = "/episodes"; 
 
 function HomePage() {
-    async function fetchPodcasts() {
-        try {
-            const response = await fetch('YOUR_API_ENDPOINT_URL');
-            if (!response.ok) {
-                throw new Error('Failed to fetch podcasts');
-            }
-    
-            const data = await response.json();
-            // Handle the podcast data, e.g., display it on your page.
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-            // Handle errors gracefully.
-        }
+    const [episodes, setEpisodes] = useState([])
+
+    //Function to fetch from our backend and update customers array
+    function getEpisodes() {
+        API.get(myAPI, path + "/" + "episode")
+        .then(response => {
+            console.log(response)
+            let newEpisodes = [...episodes]
+            newEpisodes.push(response)
+            setEpisodes(newEpisodes)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
-    
-    // Call the function when your page loads or as needed.
+
     useEffect(() => {
-        fetchPodcasts();
-    }, []);
+        getEpisodes()
+    }, [])
 
     return (
         <Layout style={{ 
@@ -30,11 +33,6 @@ function HomePage() {
             maxHeight: '100%',
             overflow: 'auto',
         }}>
-            {items.map((item) => (
-                <Card key={item.id} title={item.title}>
-                    {item.id}
-                </Card>
-            ))}
         </Layout>
     )
 }

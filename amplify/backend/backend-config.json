@@ -1,34 +1,5 @@
 {
-  "api": {
-    "api811ea49e": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "UserHandler"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    },
-    "episodes": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "getEpisodes"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    }
-  },
+  "api": {},
   "auth": {
     "mmhs60963997": {
       "customAuth": false,
@@ -57,50 +28,5 @@
       "service": "Cognito"
     }
   },
-  "function": {
-    "UserHandler": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "getEpisodes": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_UserHandler_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "UserHandler"
-        }
-      ]
-    },
-    "AMPLIFY_function_UserHandler_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "UserHandler"
-        }
-      ]
-    },
-    "AMPLIFY_function_getEpisodes_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getEpisodes"
-        }
-      ]
-    },
-    "AMPLIFY_function_getEpisodes_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getEpisodes"
-        }
-      ]
-    }
-  }
+  "function": {}
 }
