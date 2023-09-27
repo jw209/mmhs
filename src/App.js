@@ -1,51 +1,69 @@
-import './App.css';
-import React, { useState } from 'react'
-import { API } from 'aws-amplify';
+import React from 'react';
+import { 
+  Layout, 
+  Menu, 
+  Switch, 
+  Typography 
+} from 'antd';
+import {
+  HomeOutlined,
+  LineChartOutlined,
+  MergeCellsOutlined,
+  ExperimentOutlined,
+  CopyrightOutlined
+} from '@ant-design/icons';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 
-const myAPI = 'api811ea49e'
-const path = '/users'; 
+const { Text } = Typography;
+const { Header, Content, Footer, Sider } = Layout;
 
-const App = () => {
-  const [input, setInput] = useState('')
-  const [users, setUsers] = useState([])
-
-  //Function to fetch from our backend and update customers array
-  function getUser(e) {
-    let userId = e.input
-    API.get(myAPI, path + '/' + userId)
-       .then(response => {
-         console.log(response)
-         let newUsers = [...users]
-         newUsers.push(response)
-         setUsers(users)
-
-       })
-       .catch(error => {
-         console.log(error)
-       })
+const menuItems = [
+  {
+    key: '/',
+    label: <Link to='/'>Home</Link>,
+    icon: <HomeOutlined />
+  },
+  {
+    key: '/stats',
+    label: <Link to='/stats'>Weekly Statistics</Link>,
+    icon: <LineChartOutlined />
+  },
+  {
+    key: '/deckdiscussions',
+    label: <Link to='/deckdiscussions'>Deck Discussions</Link>,
+    icon: <MergeCellsOutlined />
+  },
+  {
+    key: '/forum',
+    label: <Link to='/forum'>Forum</Link>,
+    icon: <ExperimentOutlined />
   }
+]
+
+function App() {
+  const location = useLocation();
 
   return (
-    
-    <div className='App'>
-      <h1>Super Simple React App</h1>
-      <div>
-          <input placeholder='user id' type='text' value={input} onChange={(e) => setInput(e.target.value)}/>      
-      </div>
-      <br/>
-      <button onClick={() => getUser({input})}>Get User From Backend</button>
-
-      <h2 style={{visibility: users.length > 0 ? 'visible' : 'hidden' }}>Response</h2>
-      {
-        users.map((thisUser) => {
-         return (
-        <div key={thisUser.userId}>
-          <span><b>UserId:</b> {thisUser.userId} - <b>UserName</b>: {thisUser.username}</span>
-        </div>)
-       })
-      }
-    </div>
-  )
+    <Layout style={{ maxHeight: '95vh', minHeight: '95vh', overflow: 'hidden', borderRadius: '10px' }}>
+      <Sider theme="dark">
+        <Menu theme="dark" mode="vertical" defaultSelectedKeys={[location.pathname]} items={menuItems} />
+        <Switch style={{ position: 'absolute', bottom: '16px', left: '16px' }} defaultChecked />
+      </Sider>
+      <Layout>
+        <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Text style={{ marginLeft: '20px', fontSize: '24px', color: '#fff' }}>
+            Matchup Mashup
+          </Text>
+        </Header>
+        <Content style={{ marginBottom: '32px', borderRadius: '20px' }}>
+            {<Outlet />}
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          Matchup Mashup <CopyrightOutlined /> 2023
+        </Footer>
+      </Layout>
+    </Layout>
+  );
 }
 
 export default App;
