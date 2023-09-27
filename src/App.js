@@ -1,9 +1,9 @@
 import React from 'react';
 import { 
   Layout, 
-  Menu, 
-  Switch, 
-  Typography 
+  Menu,  
+  Typography,
+  Button
 } from 'antd';
 import {
   HomeOutlined,
@@ -13,6 +13,8 @@ import {
   CopyrightOutlined
 } from '@ant-design/icons';
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import styles from '@aws-amplify/ui-react/styles.css';
 
 const { Text } = Typography;
 const { Header, Content, Footer, Sider } = Layout;
@@ -40,19 +42,22 @@ const menuItems = [
   }
 ]
 
-function App() {
+function App({signOut, user}) {
   const location = useLocation();
 
   return (
-    <Layout style={{ maxHeight: '95vh', minHeight: '95vh', overflow: 'hidden', borderRadius: '10px' }}>
+    <Layout style={{ maxHeight: '100vh', minHeight: '100vh', overflow: 'hidden' }}>
+      <div style={styles.container} />
       <Sider theme="dark">
-        <Menu theme="dark" mode="vertical" defaultSelectedKeys={[location.pathname]} items={menuItems} />
-        <Switch style={{ position: 'absolute', bottom: '16px', left: '16px' }} defaultChecked />
+        <Menu style={{
+          paddingTop: 10
+        }} theme="dark" mode="vertical" defaultSelectedKeys={[location.pathname]} items={menuItems} />
+        <Button style={{ position: 'absolute', bottom: '16px', left: '16px' }} onClick={signOut}>Sign out</Button>
       </Sider>
       <Layout>
         <Header className="site-layout-background" style={{ padding: 0 }}>
-          <Text style={{ marginLeft: '20px', fontSize: '24px', color: '#fff' }}>
-            Matchup Mashup
+          <Text style={{ marginLeft: '20px', fontSize: '24px', fontWeight:'bold', color: '#fff' }}>
+            Matchup Mashup HS
           </Text>
         </Header>
         <Content style={{ marginBottom: '32px', borderRadius: '20px' }}>
@@ -66,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

@@ -2,15 +2,25 @@ import { Card, Layout } from 'antd';
 import { useState, useEffect } from 'react';
 
 function HomePage() {
-    const [items, setItems] = useState([]);
-
+    async function fetchPodcasts() {
+        try {
+            const response = await fetch('YOUR_API_ENDPOINT_URL');
+            if (!response.ok) {
+                throw new Error('Failed to fetch podcasts');
+            }
+    
+            const data = await response.json();
+            // Handle the podcast data, e.g., display it on your page.
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+            // Handle errors gracefully.
+        }
+    }
+    
+    // Call the function when your page loads or as needed.
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then((response) => response.json())
-            .then((posts) => {
-                setItems(posts);
-        })
-        .catch((err) => console.error(err));
+        fetchPodcasts();
     }, []);
 
     return (

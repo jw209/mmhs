@@ -16,10 +16,18 @@
         "UserHandler": {
           "deploymentBucketName": "amplify-mmhs-dev-115945-deployment",
           "s3Key": "amplify-builds/UserHandler-624d595532434b676368-build.zip"
+        },
+        "getEpisodes": {
+          "deploymentBucketName": "amplify-mmhs-dev-115945-deployment",
+          "s3Key": "amplify-builds/getEpisodes-30343150703778532f45-build.zip"
         }
       },
       "api": {
-        "api811ea49e": {}
+        "api811ea49e": {},
+        "episodes": {}
+      },
+      "auth": {
+        "mmhs60963997": {}
       }
     }
   }

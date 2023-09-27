@@ -13,10 +13,57 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "episodes": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getEpisodes"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "mmhs60963997": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
     }
   },
   "function": {
     "UserHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getEpisodes": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -36,6 +83,22 @@
         {
           "category": "function",
           "resourceName": "UserHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_getEpisodes_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getEpisodes"
+        }
+      ]
+    },
+    "AMPLIFY_function_getEpisodes_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getEpisodes"
         }
       ]
     }
