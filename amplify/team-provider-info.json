@@ -18,7 +18,7 @@
       "function": {
         "GetEpisodes": {
           "deploymentBucketName": "amplify-mmhs-dev-115945-deployment",
-          "s3Key": "amplify-builds/GetEpisodes-6d66363855643156616b-build.zip"
+          "s3Key": "amplify-builds/GetEpisodes-59544e7a4e4152576a6c-build.zip"
         }
       },
       "api": {
