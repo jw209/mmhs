@@ -5,16 +5,12 @@ exports.handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
 
     let feed = await parser.parseURL('https://media.rss.com/matchup-mashup/feed.xml');
-    console.log(feed.title);
 
-    let objects;
-
-    feed.items.forEach(item => {
-        objects = {
-            title: item.title,
-            link: item.link
-        }
-    });
+    const objects = feed.items.map(item => ({
+        title: item.title,
+        link: item.link,
+        date: item.pubDate
+    }));
 
     return {
         statusCode: 200,
