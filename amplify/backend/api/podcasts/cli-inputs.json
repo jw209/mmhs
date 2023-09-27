@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/episodes": {
+      "name": "/episodes",
+      "lambdaFunction": "GetEpisodes",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

@@ -14,6 +14,15 @@
     "categories": {
       "auth": {
         "mmhs60963997": {}
+      },
+      "function": {
+        "GetEpisodes": {
+          "deploymentBucketName": "amplify-mmhs-dev-115945-deployment",
+          "s3Key": "amplify-builds/GetEpisodes-6d66363855643156616b-build.zip"
+        }
+      },
+      "api": {
+        "podcasts": {}
       }
     }
   }
