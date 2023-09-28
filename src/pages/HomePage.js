@@ -14,7 +14,6 @@ function HomePage() {
     function getStuff() {
         API.get(myAPI, path)
         .then(response => {
-            console.log(response)
             setEpisodes(response)
         })
         .catch(error => {
@@ -35,6 +34,7 @@ function HomePage() {
         }}>
             {episodes.map((episode, index) => (
                 <Card key={index} title={episode.title}>
+                    <Text>{episode.content}</Text><br/>
                     <Text><span style={{fontWeight: 'bold'}}>Published on: </span>{episode.date}</Text><br/><br/>
                     <Button href={episode.link}>Go to RSS</Button>
                 </Card>

@@ -10,6 +10,7 @@ exports.handler = async (event) => {
         title: item.title,
         link: item.link,
         date: item.pubDate,
+        content: item.content
     }));
 
     return {

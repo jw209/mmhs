@@ -33,12 +33,12 @@ const menuItems = [
   {
     key: '/deckdiscussions',
     label: <Link to='/deckdiscussions'>Deck Discussions</Link>,
-    icon: <MergeCellsOutlined />
+    icon: <ExperimentOutlined />
   },
   {
     key: '/forum',
     label: <Link to='/forum'>Forum</Link>,
-    icon: <ExperimentOutlined />
+    icon: <MergeCellsOutlined />
   }
 ]
 
