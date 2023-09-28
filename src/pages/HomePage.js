@@ -35,8 +35,8 @@ function HomePage() {
         }}>
             {episodes.map((episode, index) => (
                 <Card key={index} title={episode.title}>
-                    <Text>{episode.date}</Text>
-                    <Button href={episode.link}>Go to episode</Button>
+                    <Text><span style={{fontWeight: 'bold'}}>Published on: </span>{episode.date}</Text><br/><br/>
+                    <Button href={episode.link}>Go to RSS</Button>
                 </Card>
             ))}
         </Layout>
