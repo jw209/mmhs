@@ -1,4 +1,4 @@
-import { Layout, Card, Button, Typography } from 'antd';
+import { Layout, Card, Button, Typography, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { API } from 'aws-amplify';
 
@@ -9,12 +9,14 @@ const path = '/episodes';
 
 function HomePage() {
     const [episodes, setEpisodes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     //Function to fetch from our backend and update customers array
-    function getStuff() {
+    function getEpisodes() {
         API.get(myAPI, path)
         .then(response => {
             setEpisodes(response)
+            setLoading(false);
         })
         .catch(error => {
             console.log(error)
@@ -22,8 +24,16 @@ function HomePage() {
     }
 
     useEffect(() => {
-        getStuff();
+        getEpisodes();
     }, [])
+
+    const container = 
+        episodes.map( (episode, index) => (
+            <Card key={index} title={episode.title}>
+                <Text>{episode.content}</Text><br/>
+                <Text><span style={{fontWeight: 'bold'}}>Published on: </span>{episode.date}</Text><br/><br/>
+                <Button href={episode.link}>Go to RSS</Button>
+            </Card>) )
 
     return (
         <Layout style={{ 
@@ -32,13 +42,9 @@ function HomePage() {
             maxHeight: '100%',
             overflow: 'auto',
         }}>
-            {episodes.map((episode, index) => (
-                <Card key={index} title={episode.title}>
-                    <Text>{episode.content}</Text><br/>
-                    <Text><span style={{fontWeight: 'bold'}}>Published on: </span>{episode.date}</Text><br/><br/>
-                    <Button href={episode.link}>Go to RSS</Button>
-                </Card>
-            ))}
+            <Spin spinning={loading}>
+                {container}
+            </Spin>
         </Layout>
     )
 }

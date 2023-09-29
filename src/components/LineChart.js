@@ -6,7 +6,7 @@ const LineChart = () => {
 
   useEffect(() => {
     // Chart.js configuration
-    const data = {
+    const data = { 
       labels: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'],
       datasets: [
         {
@@ -39,7 +39,10 @@ const LineChart = () => {
   }, []);
 
   return (
-    <div className="chart-container">
+    <div 
+      class="chart-container"
+      style={{position: 'relative', height:'50vh', width:'50vw'}}
+    >
       <canvas ref={chartRef} />
     </div>
   );
