@@ -16,13 +16,21 @@
         "GetEpisodes": {
           "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
           "s3Key": "amplify-builds/GetEpisodes-674f5a624c5a77484e52-build.zip"
+        },
+        "GetGames": {
+          "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
+          "s3Key": "amplify-builds/GetGames-694d6572595370354456-build.zip"
         }
       },
       "api": {
-        "podcasts": {}
+        "podcasts": {},
+        "games": {}
       },
       "auth": {
         "mmhs675242cd": {}
+      },
+      "storage": {
+        "games": {}
       }
     }
   }

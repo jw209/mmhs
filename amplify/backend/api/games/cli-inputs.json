@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/games": {
+      "name": "/games",
+      "lambdaFunction": "GetGames",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

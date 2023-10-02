@@ -1,5 +1,19 @@
 {
   "api": {
+    "games": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "GetGames"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "podcasts": {
       "dependsOn": [
         {
@@ -48,6 +62,25 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "GetGames": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "games"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -66,6 +99,28 @@
           "resourceName": "GetEpisodes"
         }
       ]
+    },
+    "AMPLIFY_function_GetGames_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "GetGames"
+        }
+      ]
+    },
+    "AMPLIFY_function_GetGames_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "GetGames"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "games": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }

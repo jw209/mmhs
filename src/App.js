@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { 
   Layout, 
   Menu,  
   Button,
   ConfigProvider,
-  theme
+  theme,
+  Modal
 } from 'antd'
 import {
   HomeOutlined,
@@ -17,6 +18,7 @@ import {
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import styles from '@aws-amplify/ui-react/styles.css'
+import InfoEntryModal from './modals/InfoEntryModal'
 
 const { Content, Footer, Sider } = Layout
 
@@ -47,6 +49,18 @@ function App({signOut, user}) {
   const location = useLocation();
   const userGroup = user.signInUserSession.idToken.payload['cognito:groups'][0];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+      setIsModalOpen(true);
+  };
+  const handleOk = () => {
+      setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+      setIsModalOpen(false);
+  };
+
   return (
     <ConfigProvider
       theme={{
@@ -73,7 +87,7 @@ function App({signOut, user}) {
           </h5>
           <div style={{display: 'inline-block'}}>
             <Button style={{ position: 'absolute', bottom: '16px', left: '16px' }} onClick={signOut}>Sign out</Button>
-            <Button style={{ visibility: (userGroup === 'admin' ? 'visibile' : 'hidden'), position: 'absolute', bottom: '16px', left: '112px' }}>
+            <Button onClick={showModal} style={{ visibility: (userGroup === 'admin' ? 'visibile' : 'hidden'), position: 'absolute', bottom: '16px', left: '112px' }}>
               <UploadOutlined />
             </Button>
           </div>
@@ -87,6 +101,9 @@ function App({signOut, user}) {
           </Footer>
         </Layout>
       </Layout>
+      <Modal title="Information Entry" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <InfoEntryModal />
+      </Modal>
     </ConfigProvider>
   );
 }
