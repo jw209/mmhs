@@ -1,4 +1,5 @@
 import { Input, InputNumber, Button, Form } from 'antd';
+import { API } from 'aws-amplify'
 import React from 'react';
 
 const myAPI = 'games'
@@ -6,15 +7,11 @@ const path = '/games'
 
 function GameEntryForm() {
   const [form] = Form.useForm();
+  
 
   const onFinish = (values) => {
-    API.put(myAPI, path)
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error => {
-        console.log(error)
-    })
+    const response = API.get(myAPI, path);
+    console.log(response);
   };
 
   return (
