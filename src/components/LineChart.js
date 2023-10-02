@@ -41,7 +41,7 @@ const LineChart = () => {
   return (
     <div 
       class="chart-container"
-      style={{position: 'relative', height:'50vh', width:'50vw'}}
+      style={{position: 'relative', height:'50vh', width:'50vw', padding: '15px'}}
     >
       <canvas ref={chartRef} />
     </div>

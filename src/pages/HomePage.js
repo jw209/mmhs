@@ -28,12 +28,14 @@ function HomePage() {
     }, [])
 
     const container = 
-        episodes.map( (episode, index) => (
+        episodes.map((episode, index) => (
+        <>
             <Card key={index} title={episode.title}>
                 <Text>{episode.content}</Text><br/>
                 <Text><span style={{fontWeight: 'bold'}}>Published on: </span>{episode.date}</Text><br/><br/>
                 <Button href={episode.link}>Go to RSS</Button>
-            </Card>) )
+            </Card>
+        <br/></>))
 
     return (
         <Layout style={{ 
