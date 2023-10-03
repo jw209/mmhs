@@ -1,5 +1,33 @@
 {
   "api": {
+    "decksapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "DecksFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "gamesapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "GamesFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "podcasts": {
       "dependsOn": [
         {
@@ -44,6 +72,44 @@
     }
   },
   "function": {
+    "DecksFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "decksdb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "GamesFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "gamesdb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "GetEpisodes": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -51,6 +117,38 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_DecksFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "DecksFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_DecksFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "DecksFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_GamesFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "GamesFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_GamesFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "GamesFunction"
+        }
+      ]
+    },
     "AMPLIFY_function_GetEpisodes_deploymentBucketName": {
       "usedBy": [
         {
@@ -68,5 +166,14 @@
       ]
     }
   },
-  "storage": {}
+  "storage": {
+    "decksdb": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "gamesdb": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
 }

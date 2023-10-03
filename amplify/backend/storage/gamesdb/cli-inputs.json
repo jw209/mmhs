@@ -1,0 +1,14 @@
+{
+  "resourceName": "gamesdb",
+  "tableName": "hs-gamesdb",
+  "partitionKey": {
+    "fieldName": "player",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "id",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

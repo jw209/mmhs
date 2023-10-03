@@ -16,13 +16,27 @@
         "GetEpisodes": {
           "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
           "s3Key": "amplify-builds/GetEpisodes-674f5a624c5a77484e52-build.zip"
+        },
+        "GamesFunction": {
+          "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
+          "s3Key": "amplify-builds/GamesFunction-594c6869713552475a62-build.zip"
+        },
+        "DecksFunction": {
+          "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
+          "s3Key": "amplify-builds/DecksFunction-4671484751336b676c63-build.zip"
         }
       },
       "api": {
-        "podcasts": {}
+        "podcasts": {},
+        "gamesapi": {},
+        "decksapi": {}
       },
       "auth": {
         "mmhs675242cd": {}
+      },
+      "storage": {
+        "gamesdb": {},
+        "decksdb": {}
       }
     }
   }
