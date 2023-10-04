@@ -1,7 +1,5 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Amplify, API } from "aws-amplify";
-import awsconfig from './aws-exports';
 import {
   createBrowserRouter,
   RouterProvider
@@ -13,9 +11,6 @@ import StatsPage from "./pages/StatsPage";
 import HomePage from "./pages/HomePage";
 import DecksPage from "./pages/DecksPage";
 import AdminToolsPage from "./pages/AdminToolsPage";
-
-Amplify.configure(awsconfig);
-API.configure(awsconfig);
 
 const router = createBrowserRouter([
   {

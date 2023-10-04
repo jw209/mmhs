@@ -3,6 +3,11 @@ import { Button, Layout, Radio } from 'antd'
 import React, { useState } from 'react'
 import DeckEntryForm from '../components/DeckEntryForm'
 import GameEntryForm from '../components/GameEntryForm'
+import { Amplify, API } from "aws-amplify";
+import awsconfig from '../aws-exports';
+
+Amplify.configure(awsconfig);
+API.configure(awsconfig);
 
 const adminStyle = {
   padding: '20px'

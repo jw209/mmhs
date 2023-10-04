@@ -34,8 +34,6 @@ const menuItems = [
     icon: <UploadOutlined />
   }
 ]
-//{signOut, user}
-//const userGroup = user.signInUserSession.idToken.payload['cognito:groups'][0];
 function App() {
   const location = useLocation();
 

@@ -5,7 +5,15 @@
       "name": "/episodes",
       "lambdaFunction": "GetEpisodes",
       "permissions": {
-        "setting": "open"
+        "setting": "protected",
+        "auth": [
+          "create",
+          "read",
+          "update"
+        ],
+        "guest": [
+          "read"
+        ]
       }
     }
   }
