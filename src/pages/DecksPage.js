@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 
-function ForumPage() {
+function DecksPage() {
     return (
         <Layout style={{ 
             flex: 1,
@@ -8,9 +8,9 @@ function ForumPage() {
             maxHeight: '100%',
             overflow: 'auto',
         }}>
-            <p>FORUM PAGE</p>
+            <p>DECK DISCUSSIONS PAGE</p>
         </Layout>
     )
 }
 
-export default ForumPage;
+export default DecksPage;

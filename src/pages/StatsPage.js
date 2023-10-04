@@ -3,8 +3,8 @@ import LineChart from '../components/LineChart';
 import React from 'react';
 import GameFeed from '../components/GameFeed';
 
-function StatsPage() {
 
+function StatsPage() {
     return (
         <Layout style={{ 
             flex: 1,
@@ -13,13 +13,15 @@ function StatsPage() {
             overflow: 'auto',
         }}>
             <Row gutter={[16, 24]}>
-                <Col className="gutter-row" span={16}>
+                <Col className="gutter-row" span={12}>
                     <LineChart />
                 </Col>
-                <Col className="gutter-row" span={6}>
+                <Col className="gutter-row" span={12}>
                     <Layout 
                         style={{
-                            paddingTop: '8%'
+                            paddingTop: '8%',
+                            marginLeft: '5%',
+                            marginRight: '5%'
                         }}
                     >
                         <GameFeed />

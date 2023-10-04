@@ -1,26 +1,16 @@
-import React, { useState } from 'react'
-import { 
-  Layout, 
-  Menu,  
-  Button,
-  ConfigProvider,
-  theme,
-  Modal
-} from 'antd'
+import React from 'react'
+import { Layout, Menu, Typography } from 'antd'
 import {
   HomeOutlined,
   LineChartOutlined,
-  MergeCellsOutlined,
   ExperimentOutlined,
   CopyrightOutlined,
   UploadOutlined
 } from '@ant-design/icons'
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { withAuthenticator } from '@aws-amplify/ui-react'
-import styles from '@aws-amplify/ui-react/styles.css'
-import InfoEntryModal from './modals/InfoEntryModal'
 
-const { Content, Footer, Sider } = Layout
+const { Content, Footer } = Layout
+const { Text } = Typography
 
 const menuItems = [
   {
@@ -34,78 +24,36 @@ const menuItems = [
     icon: <LineChartOutlined />
   },
   {
-    key: '/deckdiscussions',
-    label: <Link to='/deckdiscussions'>Deck Discussions</Link>,
+    key: '/decks',
+    label: <Link to='/decks'>Decks</Link>,
     icon: <ExperimentOutlined />
   },
   {
-    key: '/forum',
-    label: <Link to='/forum'>Forum</Link>,
-    icon: <MergeCellsOutlined />
+    key: '/admintools',
+    label: <Link to='/admintools'>Admin Tools</Link>,
+    icon: <UploadOutlined />
   }
 ]
-
-function App({signOut, user}) {
+//{signOut, user}
+//const userGroup = user.signInUserSession.idToken.payload['cognito:groups'][0];
+function App() {
   const location = useLocation();
-  const userGroup = user.signInUserSession.idToken.payload['cognito:groups'][0];
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-      setIsModalOpen(true);
-  };
-  const handleOk = () => {
-      setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-      setIsModalOpen(false);
-  };
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.lightAlgorithm
-      }}
-    >
-      <Layout style={{ maxHeight: '100vh', minHeight: '100vh', overflow: 'hidden' }}>
-        <div style={styles.container} />
-        <Sider style={{ boxShadow: "1px 16px 30px 8px rgba(208, 216, 243, 1.0)"}}>
-          <img style={{
-            marginLeft: '12px',
-            marginTop: '20px',
-            width: '175px',
-            height: '175px',
-            border: '1px solid #000',
-            borderRadius: '20px',
-            overflow: 'hidden'
-          }} src={require('./assets/mm.png')} alt='mm'></img>
-          <Menu style={{
-            paddingTop: '5vh'
-          }} theme='dark' mode="vertical" defaultSelectedKeys={[location.pathname]} items={menuItems} />
-          <h5 style={{ position: 'absolute', bottom: '48px', left: '16px', color: 'green' }}>
-            Administrator Account
-          </h5>
-          <div style={{display: 'inline-block'}}>
-            <Button style={{ position: 'absolute', bottom: '16px', left: '16px' }} onClick={signOut}>Sign out</Button>
-            <Button onClick={showModal} style={{ visibility: (userGroup === 'admin' ? 'visibile' : 'hidden'), position: 'absolute', bottom: '16px', left: '112px' }}>
-              <UploadOutlined />
-            </Button>
-          </div>
-        </Sider>
-        <Layout>
-          <Content style={{ marginBottom: '32px', borderRadius: '20px' }}>
-            <Outlet />
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
+    <Layout style={{height: '100vh', width: '100vw'}}>
+      <Layout>
+        <Menu selectedKeys={[location.pathname]} mode="horizontal" items={menuItems} />
+        <Content>
+          <Outlet />
+        </Content>
+        <Footer>
+          <Text>
             Matchup Mashup <CopyrightOutlined /> 2023
-          </Footer>
-        </Layout>
+          </Text>
+        </Footer>
       </Layout>
-      <Modal title="Information Entry" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <InfoEntryModal />
-      </Modal>
-    </ConfigProvider>
+    </Layout>
   );
 }
 
-export default withAuthenticator(App)
+export default App

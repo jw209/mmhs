@@ -3,14 +3,27 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  margin-left: 12px;
+  margin-top: 20px;
+  width: 175px;
+  height: 175px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Main-sider {
+  box-shadow: 1px 16px 30px 8px rgba(208, 216, 243, 1.0);
+}
+
+.Main-layout {
+  max-height: 100vh; 
+  min-height: 100vh; 
+  overflow: hidden;
+}
+
+.Menu {
+  padding-top: 5vh;
 }
 
 .App-header {

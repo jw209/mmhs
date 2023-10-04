@@ -5,7 +5,7 @@ import { API } from 'aws-amplify';
 const myAPI = 'decksapi'
 const path = '/decks'
 
-function DeckEntryForm() {
+function DeckEntryForm({user}) {
   const [form] = Form.useForm();
 
   function parseDeckCode(val) {
@@ -33,6 +33,8 @@ function DeckEntryForm() {
   };
 
   return (
+    <>
+    <h1>{user}</h1>
     <Form form={form} onFinish={onFinish} layout="vertical">
       <Form.Item label="Deck Code" name="id" rules={[{ required: true, message: 'Please enter deck code' }]}>
         <InputNumber placeholder="Enter deck code" />
@@ -52,6 +54,8 @@ function DeckEntryForm() {
         </Button>
       </Form.Item>
     </Form>
+    </>
+    
   );
 }
 

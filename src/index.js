@@ -11,8 +11,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import StatsPage from "./pages/StatsPage";
 import HomePage from "./pages/HomePage";
-import DeckDiscussionsPage from "./pages/DeckDiscussionsPage";
-import ForumPage from "./pages/ForumPage";
+import DecksPage from "./pages/DecksPage";
+import AdminToolsPage from "./pages/AdminToolsPage";
 
 Amplify.configure(awsconfig);
 API.configure(awsconfig);
@@ -31,12 +31,13 @@ const router = createBrowserRouter([
         element: <StatsPage />
       },
       {
-        path: "/deckdiscussions",
-        element: <DeckDiscussionsPage />
+        path: "/decks",
+        element: <DecksPage />
       },
       {
-        path: "/forum",
-        element: <ForumPage />
+        path: "/admintools",
+        element: <AdminToolsPage />,
+        requiresAuth: true
       }
     ],
   },
