@@ -27,8 +27,8 @@ function AdminToolsPage() {
         <Layout style={adminStyle}>
           <div style={{display: 'inline-block'}}>
             <Radio.Group onChange={onChange} value={value}>
-              <Radio name="enterGame" value={0}>Game data</Radio>
-              <Radio name="deckAnalysis" value={1}>Deck analysis</Radio>
+              <Radio id="enterGame" value={0}>Game data</Radio>
+              <Radio id="deckAnalysis" value={1}>Deck analysis</Radio>
             </Radio.Group>
             <Button type="primary" style={signoutStyle} onClick={signOut}>Sign out</Button>
           </div>

@@ -1,4 +1,5 @@
 import { Layout } from 'antd';
+import DeckList from '../components/DeckList'
 
 function DecksPage() {
     return (
@@ -8,7 +9,7 @@ function DecksPage() {
             maxHeight: '100%',
             overflow: 'auto',
         }}>
-            <p>DECK DISCUSSIONS PAGE</p>
+            <DeckList />
         </Layout>
     )
 }

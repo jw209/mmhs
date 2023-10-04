@@ -91,7 +91,7 @@ const LineChart = () => {
           },
           {
             label: 'PrivateMerc',
-            data: [3, 4],
+            data: privatemerc,
             borderColor: 'rgba(255, 31, 0, 1)',
             borderWidth: 2,
           }
