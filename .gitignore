@@ -37,6 +37,7 @@ awsconfiguration.json
 amplifyconfiguration.json
 amplifyconfiguration.dart
 amplify-build-config.json
+aws-exports.js
 amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
