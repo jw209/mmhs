@@ -20,7 +20,7 @@
         },
         "GamesFunction": {
           "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
-          "s3Key": "amplify-builds/GamesFunction-594c6869713552475a62-build.zip"
+          "s3Key": "amplify-builds/GamesFunction-76374646376d52373367-build.zip"
         },
         "DecksFunction": {
           "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",

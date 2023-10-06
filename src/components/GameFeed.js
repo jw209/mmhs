@@ -1,53 +1,78 @@
-import { Card, Typography } from 'antd';
+import { Button } from 'antd';
+import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react';
 import { API } from 'aws-amplify';
-const { Text } = Typography;
 
 const myAPI = 'gamesapi'
 const path = '/games'
 
-const GameFeed = () => {
-    const [rawData, setRawData] = useState(null);
+const GameFeed = ({loadingGameFeed}) => {
+  const [rawData, setRawData] = useState(null);
+  const [feedVisibility, setFeedVisibility] = useState(false);
 
-    useEffect(() => {
-        API.get(myAPI, path)
-        .then((res) => {
-            const rawObjects = res.map((item) => {
-                return item
-            })
+  useEffect(() => {
+    API.get(myAPI, path)
+    .then((res) => {
+      setRawData(res)
+      loadingGameFeed(false)
+    })
+  }, [loadingGameFeed])
 
-            setRawData(rawObjects)
-        })
-    }, [])
-
-   return (
+  return (
     <div>
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        width: '300px',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, .2)', /* Transparent background color */
+        overflowY: 'auto', /* Enable vertical scrolling */
+        padding: '16px',
+        zIndex: 1000, /* Ensure the overlay appears above other content */
+        visibility: feedVisibility ? 'visible' : 'hidden'
+      }}
+    >
     {rawData ? (
-        rawData.map((item, index) => (
-            <Card
-            key={index}
-            style={{
-                minWidth: '70%',
-                minHeight: '20%',
-                borderRadius: '40px',
-                boxShadow: '5px 8px 24px 5px rgba(208, 216, 243, 1.0)',
-            }}
-            >
-            <Text>
-                <h5>{item.win ? 'win' : 'loss'}</h5>
-                <h5>{item.opponent}</h5>
-                <h5>{item.player}</h5>
-                <h5>{item.mulligan}</h5>
-                <h5>{item.notes}</h5>
-                <h5>{item.turns}</h5>
-            </Text>
-            </Card>
-        ))
-        ) : (
-        <p>Loading...</p>
-        )}
+      rawData.map((item, index) => (
+        <p
+          key={index}
+          style={{
+            backgroundColor: 'rgba(1.0, 1.0, 1.0, 0.3)',
+            padding: '10px',
+            borderRadius: '10px',
+            marginBottom: '30px'
+          }}
+        >
+          <span style={{color:'white'}}>{item.player} VS {item.opponent}</span>
+          <br /><br />
+          <div style={{display: 'inline-block'}}>
+            {item.win ? <span style={{color:'green', fontWeight:'bold'}}>WIN</span> 
+              : <span style={{color:'red', fontWeight:'bold'}}>LOSS</span>  }
+            <Button style={{marginLeft: '10px'}}>Notes</Button>
+            <Button style={{marginLeft: '10px'}}>Mulligan</Button>
+          </div>
+        </p>
+      ))
+      ) : (
+      <div />
+    )} 
     </div>
-   );
+    <Button 
+      style={{
+        position: 'fixed',
+        top: '45vh',
+        right: feedVisibility ? '20%' : '2%',
+        zIndex: 1000, /* Ensure the overlay appears above other content */
+        transition: 'right 0.3s ease'
+      }}
+      type="dashed"
+      onClick={() => {setFeedVisibility(!feedVisibility)}}>
+      {feedVisibility ? <DoubleRightOutlined /> : <DoubleLeftOutlined />}
+    </Button>
+    </div>
+  );
 }
 
 export default GameFeed;

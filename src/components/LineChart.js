@@ -34,7 +34,7 @@ const indexToDay = {
   6: 1
 }
 
-const LineChart = () => {
+const LineChart = ({loadingLineChart}) => {
   const chartRef = useRef(null);
   const today = new Date();
   const currentDay = today.getDay();
@@ -43,6 +43,10 @@ const LineChart = () => {
   const [privatemerc, setPrivatemerc] = useState([]);
   const [ouiouiman, setOuiouiman] = useState([]);
   const [dataRetrieved, setDataRetrieved] = useState(false);
+
+  useEffect(() => {
+    loadingLineChart(false);
+  }, [dataRetrieved, loadingLineChart])
 
   // get raw data from db
   useEffect(() => {
@@ -55,7 +59,7 @@ const LineChart = () => {
       let ouiouimanData = [];
 
       for (let day=0; day <= currentDayAsIndex; day++) {
-        let privNumWins = priv.filter(obj => obj.win === true && obj.dayofweek === indexToDay[day])
+        let privNumWins = priv.filter(obj =>  obj.win === true && obj.dayofweek === indexToDay[day])
         let ouiNumWins = ouioui.filter(obj => obj.win === true && obj.dayofweek === indexToDay[day])
 
         if (privNumWins.length === 0) {
@@ -114,12 +118,7 @@ const LineChart = () => {
   }, [dataRetrieved, privatemerc, ouiouiman]);
 
   return (
-    <div 
-      className="chart-container"
-      style={{position: 'relative', height:'50vh', width:'50vw', padding: '15px'}}
-    >
-      <canvas ref={chartRef} />
-    </div>
+    <canvas ref={chartRef} />
   );
 };
 

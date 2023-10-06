@@ -55,6 +55,7 @@ const convertUrlType = (param, type) => {
   }
 }
 
+
 /************************************
 * HTTP Get method to list objects *
 ************************************/
@@ -73,6 +74,7 @@ app.get(path, async function(req, res) {
     res.json({error: 'Could not load items: ' + err.message});
   }
 });
+
 
 /************************************
  * HTTP Get method to query objects *
