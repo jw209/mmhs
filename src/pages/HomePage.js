@@ -29,30 +29,47 @@ function HomePage() {
 
   const container = 
     episodes.map((episode, index) => (
-      <Card  style={{marginBottom: '10px'}} key={index} title={episode.title}>
+      <Card 
+        style={{
+          marginBottom: '30px'
+        }} 
+        key={index} 
+        title={episode.title}
+      >
         <Text>
           {episode.content}
         </Text>
         <Text>
           Published on: {episode.date}
         </Text>
-        <Button href={episode.link}>Go to RSS</Button>
+        <Button 
+          href={episode.link}
+        >
+          Go to RSS
+        </Button>
       </Card>
     )
   )
 
   return (
-    <Layout style={{ 
-      flex: 1,
-      padding: 48,
-      maxHeight: '100%',
-      overflow: 'auto',
-    }}
+    <Spin 
+      style={{
+        position: 'absolute',
+        top: '40vh'
+      }}
+      spinning={loading}
     >
-      <Spin spinning={loading}>
-        {container}
-      </Spin>
-    </Layout>
+      <Layout 
+        style={{ 
+          flex: 1,
+          padding: 48,
+          maxHeight: '100%',
+          overflow: 'auto',
+        }}
+      >
+        {container} 
+      </Layout>
+    </Spin>
   )
 }
 

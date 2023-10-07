@@ -18,7 +18,13 @@ function StatsPage() {
 
 
   return (
-    <Spin spinning={loadingLineChart || loadingGameFeed}>
+    <Spin 
+      style={{
+        position: 'absolute',
+        top: '40vh'
+      }}
+      spinning={loadingLineChart || loadingGameFeed}
+    >
       <Layout style={{
         position: 'relative',
         flex: 1,

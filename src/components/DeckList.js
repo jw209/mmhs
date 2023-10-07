@@ -5,7 +5,7 @@ import { Layout } from 'antd'
 const myAPI = 'decksapi'
 const path = '/decks'
 
-function DeckList() {
+function DeckList({loadingDeckLists}) {
   const [ouiouimanData, setOuiouimanData] = useState(null)
   const [privatemercData, setPrivatemercData] = useState(null)
   const [dataRetrieved, setDataRetrieved] = useState(false)
@@ -17,9 +17,11 @@ function DeckList() {
       const priv = res.filter(obj => obj.player === "Privatemerc");
       setOuiouimanData(ouioui)
       setPrivatemercData(priv)
+
       setDataRetrieved(true)
+      loadingDeckLists(false)
     })
-  }, [])
+  }, [loadingDeckLists])
 
   return (
     <div>

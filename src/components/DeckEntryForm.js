@@ -108,6 +108,7 @@ function DeckEntryForm({user}) {
     >
       {/* SET GAME TO MODIFY OR ADD NEW DECK */}
       <Cascader 
+        placeholder="Select deck"
         options={options}
         onChange={onChange}
         rules={[{ 
@@ -115,6 +116,7 @@ function DeckEntryForm({user}) {
           message: 'Please enter opponent' 
         }]} 
       />
+      <br /><br />
       {/* SET YOUR DECK */}
       <Form.Item 
         label="Deck Name" 

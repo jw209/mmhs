@@ -118,7 +118,17 @@ const LineChart = ({loadingLineChart}) => {
   }, [dataRetrieved, privatemerc, ouiouiman]);
 
   return (
-    <canvas ref={chartRef} />
+    <div 
+      style={{
+        position: 'relative',
+        height:'70vh',
+        width:'85vw',
+        marginLeft: '3vw'
+      }}
+      id='chart-container'
+    >
+      <canvas ref={chartRef} />
+    </div>
   );
 };
 
