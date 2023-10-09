@@ -46,15 +46,14 @@ function DeckEntryForm({user}) {
    * <# 2x (2)> to identify a line containing a card
    */
   function parseDeckCode(val) {
-    let extractedLines = '';
-    const lines = val.split('\n');
+    let extractedLines = ''
+    const lines = val.split('\n')
     for (const line of lines) {
-      if (/# \d+x \(\d+\)/.test(line)) {
-        extractedLines += (line.split(') ')[1]);
-        extractedLines += ', ';
+      if (!line.startsWith('#')) {
+        extractedLines += line + '\n'
       }
     }
-    return extractedLines; 
+    return extractedLines.trim(); 
   }
 
   useEffect(() => {

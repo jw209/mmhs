@@ -4,12 +4,12 @@ const API_KEY = process.env.CLIENT_ID;
 const API_SECRET = process.env.SECRET_CLIENT_ID;
 
 exports.handler = async (event) => {
-  const cardName = event.cardName; // Retrieve card name from the Lambda event
+  const deckCode = event.queryStringParameters.deckCode; // Retrieve card name from the Lambda event
 
   // Define API request options
   const options = {
     hostname: BLIZZARD_API_URL,
-    path: `/hearthstone/cards?name=${encodeURIComponent(cardName)}`,
+    path: `/hearthstone/deck?code=${encodeURIComponent(deckCode)}`,
     method: 'GET',
     headers: {
       Authorization: `Bearer ${API_KEY}:${API_SECRET}`,
