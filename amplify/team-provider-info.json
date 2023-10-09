@@ -34,7 +34,8 @@
       "api": {
         "podcasts": {},
         "gamesapi": {},
-        "decksapi": {}
+        "decksapi": {},
+        "cardsapi": {}
       },
       "auth": {
         "mmhs675242cd": {}
