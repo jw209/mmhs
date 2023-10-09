@@ -12,6 +12,8 @@ exports.handler = async (event) => {
     path: `/hearthstone/deck?code=${encodeURIComponent(deckCode)}`,
     method: 'GET',
     headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
       Authorization: `Bearer ${API_KEY}:${API_SECRET}`,
     },
   };

@@ -2,6 +2,7 @@ import { Layout, Spin } from 'antd'
 import DeckList from '../components/DeckList'
 import React, { useState } from 'react'
 import { API } from 'aws-amplify'
+import { getByPlaceholderText } from '@testing-library/react'
 
 const myAPI = 'cardsapi'
 const path = '/cardsapi'
@@ -27,6 +28,8 @@ function DecksPage() {
   const handleLoadingStateChangeList = (updatedState) => {
     setLoadingDeckLists(updatedState)
   }
+
+  getCards()
 
   return (
     <Spin 

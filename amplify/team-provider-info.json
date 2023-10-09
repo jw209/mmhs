@@ -28,7 +28,7 @@
         },
         "GetCards": {
           "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
-          "s3Key": "amplify-builds/GetCards-69503647364356765063-build.zip"
+          "s3Key": "amplify-builds/GetCards-76473532316662596d42-build.zip"
         }
       },
       "api": {
