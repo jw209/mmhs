@@ -110,6 +110,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "GetCards": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "GetEpisodes": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -146,6 +151,22 @@
         {
           "category": "function",
           "resourceName": "GamesFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_GetCards_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "GetCards"
+        }
+      ]
+    },
+    "AMPLIFY_function_GetCards_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "GetCards"
         }
       ]
     },
