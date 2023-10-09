@@ -25,17 +25,12 @@
         "DecksFunction": {
           "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
           "s3Key": "amplify-builds/DecksFunction-4671484751336b676c63-build.zip"
-        },
-        "GetCards": {
-          "deploymentBucketName": "amplify-mmhs-dev-211908-deployment",
-          "s3Key": "amplify-builds/GetCards-76473532316662596d42-build.zip"
         }
       },
       "api": {
         "podcasts": {},
         "gamesapi": {},
-        "decksapi": {},
-        "cardsapi": {}
+        "decksapi": {}
       },
       "auth": {
         "mmhs675242cd": {}

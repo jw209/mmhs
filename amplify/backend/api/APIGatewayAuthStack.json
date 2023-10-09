@@ -19,9 +19,6 @@
     },
     "podcasts": {
       "Type": "String"
-    },
-    "cardsapi": {
-      "Type": "String"
     }
   },
   "Conditions": {
