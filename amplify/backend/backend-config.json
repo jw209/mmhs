@@ -1,5 +1,19 @@
 {
   "api": {
+    "cardsapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "GetCards"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "decksapi": {
       "dependsOn": [
         {
