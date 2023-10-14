@@ -1,19 +1,35 @@
-import { Layout } from 'antd'
-import React from 'react'
-import GridOfCards from '../components/GridOfCards'
+import React, {useState, useEffect} from 'react'
+import { API } from 'aws-amplify'
+import DeckList from '../components/DeckList'
+import './pageStyles.css'
 
 function DecksPage() {
+  const [dataRetrieved, setDataRetrieved] = useState(false)
+  const [deckData, setDeckData] = useState([])
+
+  useEffect(() => {
+    API.get('decksapi', '/decks')
+    .then((res) => {
+      setDeckData(res)
+      setDataRetrieved(true)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
+
   return (
-    <Layout
-      style={{
-        flex: 1,
-        padding: 24,
-        maxHeight: '100%',
-        overflow: 'auto',
-      }}
-    >
-      <GridOfCards />
-    </Layout>
+    <div>
+    {
+      !dataRetrieved
+      ? <div className='center-loader'>
+          <div className='lds-dual-ring' />
+        </div>
+      : <div> 
+          <DeckList data={deckData} />
+        </div>
+    }
+    </div>
   )
 }
 

@@ -1,42 +1,38 @@
-import { Layout, Spin } from 'antd';
-import LineChart from '../components/LineChart';
-import React, { useState } from 'react';
-import GameFeed from '../components/GameFeed';
-
+import LineChart from '../components/LineChart'
+import React, { useState, useEffect } from 'react'
+import GameFeed from '../components/GameFeed'
+import { API } from 'aws-amplify'
+import './pageStyles.css'
 
 function StatsPage() {
-  const [loadingLineChart, setLoadingLineChart] = useState(true);
-  const [loadingGameFeed, setLoadingGameFeed] = useState(true);
+  const [dataRetrieved, setDataRetrieved] = useState(false)
+  const [gameData, setGameData] = useState([])
 
-  const handleLoadingStateChangeFeed = (updatedState) => {
-    setLoadingGameFeed(updatedState);
-  }
-
-  const handleLoadingStateChangeChart = (updatedState) => {
-    setLoadingLineChart(updatedState)
-  }
-
+  // get raw data from db
+  useEffect(() => {
+    API.get('gamesapi', '/games')
+    .then((res) => {
+      setGameData(res)
+      setDataRetrieved(true);
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
 
   return (
-    <Spin 
-      style={{
-        position: 'absolute',
-        top: '40vh'
-      }}
-      spinning={loadingLineChart || loadingGameFeed}
-    >
-      <Layout style={{
-        position: 'relative',
-        flex: 1,
-        padding: 24,
-        maxHeight: '100vh',
-        overflow: 'hidden',
-      }}
-      >
-        <LineChart loadingLineChart={handleLoadingStateChangeChart} />
-        <GameFeed loadingGameFeed={handleLoadingStateChangeFeed} />
-      </Layout>
-    </Spin>
+      <div>
+      {
+        !dataRetrieved
+        ? <div className='center-loader'>
+            <div className='lds-dual-ring' />
+          </div>
+        : <div> 
+            <LineChart data={gameData}/>
+            <GameFeed data={gameData}/>
+          </div>
+      }
+      </div>
   )
 }
 

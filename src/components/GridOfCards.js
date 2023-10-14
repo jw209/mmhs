@@ -25,7 +25,7 @@ function GridOfCards() {
 
   const getDeckLists = async (ouiouimanCode, privatemercCode) => {
     if (ouiouimanCode.length > 0) {
-      await axios.get(blizzApiPath + ouiouimanCode + '&access_token=USPHSK748TUWRU5O0LE77WFD2xuI6N7X4H')
+      await axios.get(blizzApiPath + ouiouimanCode + '&access_token=571fa778ba04416b8d5db578dbb88c58')
       .then(res => {
         console.log(res.data)
         setOuiouiman(res.data)
@@ -36,7 +36,7 @@ function GridOfCards() {
     }
 
     if (privatemercCode.length > 0) {
-      await axios.get(blizzApiPath + privatemercCode + '&access_token=USPHSK748TUWRU5O0LE77WFD2xuI6N7X4H')
+      await axios.get(blizzApiPath + privatemercCode + '&access_token=571fa778ba04416b8d5db578dbb88c58')
       .then(res => {
         setPrivatemerc(res.data)
       })

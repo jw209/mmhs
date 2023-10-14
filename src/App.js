@@ -1,56 +1,30 @@
 import React from 'react'
-import { Layout, Menu, Typography } from 'antd'
-import {
-  HomeOutlined,
-  LineChartOutlined,
-  ExperimentOutlined,
-  CopyrightOutlined,
-  UploadOutlined
-} from '@ant-design/icons'
 import { Outlet, Link, useLocation } from 'react-router-dom'
+import './App.css';
 
-const { Content, Footer } = Layout
-const { Text } = Typography
-
-const menuItems = [
-  {
-    key: '/',
-    label: <Link to='/'>Home</Link>,
-    icon: <HomeOutlined />
-  },
-  {
-    key: '/stats',
-    label: <Link to='/stats'>Weekly Statistics</Link>,
-    icon: <LineChartOutlined />
-  },
-  {
-    key: '/decks',
-    label: <Link to='/decks'>Decks</Link>,
-    icon: <ExperimentOutlined />
-  },
-  {
-    key: '/admintools',
-    label: <Link to='/admintools'>Admin Tools</Link>,
-    icon: <UploadOutlined />
-  }
-]
 function App() {
   const location = useLocation();
 
   return (
-    <Layout style={{height: '100vh', width: '100vw'}}>
-      <Layout>
-        <Menu selectedKeys={[location.pathname]} mode="horizontal" items={menuItems} />
-        <Content>
-          <Outlet />
-        </Content>
-        <Footer>
-          <Text>
-            Matchup Mashup <CopyrightOutlined /> 2023
-          </Text>
-        </Footer>
-      </Layout>
-    </Layout>
+    <div className='container'>
+      <div className='menu'>
+        <Link className={location.pathname === '/' ? 'menu-item active' : 'menu-item'} to='/'>
+          Home
+        </Link>
+        <Link className={location.pathname === '/stats' ? 'menu-item active' : 'menu-item'} to='/stats'>
+          Statistics
+        </Link>
+        <Link className={location.pathname === '/decks' ? 'menu-item active' : 'menu-item'} to='/decks'>
+          Decks
+        </Link>
+        <Link className={location.pathname === '/admintools' ? 'menu-item active' : 'menu-item'} to='/admintools'>
+          Admin Tools
+        </Link>
+      </div>
+      <div className='content'>
+        <Outlet />
+      </div>
+    </div>
   );
 }
 
