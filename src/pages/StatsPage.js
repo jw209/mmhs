@@ -24,7 +24,7 @@ function StatsPage() {
       <div>
       {
         !dataRetrieved
-        ? <div className='center-loader'>
+        ? <div className='loader'>
             <div className='lds-dual-ring' />
           </div>
         : <div> 

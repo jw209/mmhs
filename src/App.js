@@ -1,29 +1,31 @@
 import React from 'react'
 import { Outlet, Link, useLocation } from 'react-router-dom'
+import { HomeOutlined, LineChartOutlined, UploadOutlined, AppstoreOutlined } from '@ant-design/icons';
 import './App.css';
 
 function App() {
   const location = useLocation();
 
   return (
-    <div className='container'>
-      <div className='menu'>
+    <div id='container'>
+      <menu>
+        <h1>Matchup Mashup</h1>
         <Link className={location.pathname === '/' ? 'menu-item active' : 'menu-item'} to='/'>
-          Home
+          <HomeOutlined />
         </Link>
         <Link className={location.pathname === '/stats' ? 'menu-item active' : 'menu-item'} to='/stats'>
-          Statistics
+          <LineChartOutlined />
         </Link>
         <Link className={location.pathname === '/decks' ? 'menu-item active' : 'menu-item'} to='/decks'>
-          Decks
+          <AppstoreOutlined />
         </Link>
         <Link className={location.pathname === '/admintools' ? 'menu-item active' : 'menu-item'} to='/admintools'>
-          Admin Tools
+          <UploadOutlined />
         </Link>
-      </div>
-      <div className='content'>
+      </menu>
+      <content>
         <Outlet />
-      </div>
+      </content>
     </div>
   );
 }

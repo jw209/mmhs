@@ -21,7 +21,7 @@ function HomePage() {
     <div>
     {
       loadingEpisodeFeed
-      ? <div className='center-loader'>
+      ? <div className='loader'>
           <div className='lds-dual-ring' />
         </div>
       : episodes.map((episode, index) => (
@@ -29,7 +29,7 @@ function HomePage() {
           <h1 className='card-heading'>{episode.title}</h1>
           <p className='card-content'>{episode.content.replace(/<\/?p>/g, '')}</p>
           <p className='card-footer'>Published on: {episode.date}</p>
-          <a className='card-footer' href={episode.link}>Go to RSS</a>
+          <a className='card-link' href={episode.link}>Go to RSS</a>
         </div>
       ))
     }

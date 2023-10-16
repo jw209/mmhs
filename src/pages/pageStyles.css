@@ -1,30 +1,10 @@
-.Deck-page-layout {
-  max-height: 100%;
-  overflow: auto;
-  flex: 1;
-  padding: 24;
-}
-
-.Home-page-layout {
-  position: absolute;
-  background-color:aliceblue;
-  overflow: hidden;
-}
-
-.Stats-page-layout {
-  margin-bottom: 50px;
-  left: 2vw;
-  position: relative;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-top: 150px;
-}
-
 .lds-dual-ring {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30vh;
 }
 
 .lds-dual-ring:after {
@@ -32,7 +12,6 @@
   display: flex;
   width: 100px;
   height: 100px;
-  margin: 8px;
   border-radius: 50%;
   border: 10px solid black;
   border-color: black transparent black transparent;
@@ -48,14 +27,14 @@
   }
 }
 
-.center-loader {
-  position: flex;
+.loader {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Episode-card {
   position: relative;
-  background-color: whitesmoke;
-  display: grid;
   width: 75%;
   border-width: 2px;
   border-color: black;
@@ -64,16 +43,8 @@
   box-shadow: 10px 10px 12px -1px rgba(0,0,0,0.75);
   padding: 30px;
   margin-bottom: 30px;
-}
-
-.podcast-list-layout {
-  background-color: transparent;
-  left: 2vw;
-  position: relative;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card-heading {
