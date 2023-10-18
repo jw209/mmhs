@@ -4,7 +4,7 @@ import { API } from 'aws-amplify';
 
 const myAPI = 'decksapi'
 const path = '/decks'
-const key = 'e018b9e9-3367-4cf8-9f97-67b1bd037dfa'
+const key = 'jessecodes98@gmail.com'
 
 const AddNewDeck = {
   value: 1,
@@ -40,22 +40,6 @@ function DeckEntryForm({user}) {
     })
   }, [player])
 
-  /* Parse the deck code by splitting it into an array
-   * by line, and then testing each index of this array
-   * with a regular expression based on this pattern:
-   * <# 2x (2)> to identify a line containing a card
-   */
-  function parseDeckCode(val) {
-    let extractedLines = ''
-    const lines = val.split('\n')
-    for (const line of lines) {
-      if (!line.startsWith('#')) {
-        extractedLines += line + '\n'
-      }
-    }
-    return extractedLines.trim(); 
-  }
-
   useEffect(() => {
     let highestId = rawData.reduce((maxId, obj) => {
       return obj.id > maxId ? obj.id : maxId
@@ -69,13 +53,13 @@ function DeckEntryForm({user}) {
   }, [rawData])
 
   const onFinish = (values) => {
-    let parsedDeckCode = parseDeckCode(values.deckCode)
+    const deck = parseDeckList(values.deckCode)
     API.post(myAPI, path, {
       body: {
         id: thisId,
         player: player,
         deckName: values.deckName,
-        deckCode: parsedDeckCode,
+        deckCode: deck,
         notes: values.notes
       }
     })
@@ -97,75 +81,53 @@ function DeckEntryForm({user}) {
     }
   }
 
+  function parseDeckList(deckString) {
+    const lines = deckString.split('\n');
+    const cardList = [];
+  
+    for (const line of lines) {
+      const match = line.match(/# (\d+)x \(\d+\) (.+)/);
+      if (match) {
+        const quantity = match[1];
+        const cardName = match[2];
+        cardList.push(`${quantity}x ${cardName}`);
+      }
+    }
+  
+    return cardList.join(', ');
+  }
+
   /* Render the form with two text areas and a submit button */
   return (
-    <Form 
-      style={{width: '300px'}}
-      form={form}
-      onFinish={onFinish} 
-      layout="vertical"
-    >
-      {/* SET GAME TO MODIFY OR ADD NEW DECK */}
-      <Cascader 
-        placeholder="Select deck"
-        options={options}
-        onChange={onChange}
-        rules={[{ 
+    <Form form={form} onFinish={onFinish} layout="vertical">
+      <Cascader placeholder="Select deck" options={options} onChange={onChange} rules={[{ 
           required: true, 
           message: 'Please enter opponent' 
         }]} 
       />
-      <br /><br />
-      {/* SET YOUR DECK */}
-      <Form.Item 
-        label="Deck Name" 
-        name="deckName" 
-        rules={[{ 
+      <Form.Item label="Deck Name" name="deckName" rules={[{ 
           required: true,
           message: 'Please enter deck name'
         }]}
       >
-        <Input
-          placeholder="Enter deck name" 
-        />
+        <Input placeholder="Enter deck name" />
       </Form.Item>
-      {/* SET DECK CODE */}
-      <Form.Item 
-        label="Deck Code" 
-        name="deckCode" 
-        rules={[{ 
+      <Form.Item label="Deck Code" name="deckCode" rules={[{ 
           required: true,
           message: 'Please enter deck code'
         }]}
       >
-        <Input.TextArea 
-          disabled={deckCodeAccess}
-          placeholder="Enter deck code" 
-        />
+        <Input.TextArea disabled={deckCodeAccess} placeholder="Enter deck code" />
       </Form.Item>
-      {/* SET NOTES */}
-      <Form.Item 
-        label="Notes" 
-        name="notes" 
-        rules={[{ 
+      <Form.Item label="Notes" name="notes" rules={[{ 
           required: true, 
           message: 'Please enter notes' 
         }]}
       >
-        <Input.TextArea 
-          placeholder="Enter notes" 
-        />
+        <Input.TextArea placeholder="Enter notes" />
       </Form.Item>
-      {/* SUBMIT LOGIC */}
-      <Form.Item 
-        name="submit"
-      >
-        <Button 
-          type="primary" 
-          htmlType="submit"
-        >
-          Submit
-        </Button>
+      <Form.Item name="submit">
+        <Button type="primary" htmlType="submit">Submit</Button>
       </Form.Item>
     </Form>
   );

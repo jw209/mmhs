@@ -23,9 +23,9 @@ function App() {
           <UploadOutlined />
         </Link>
       </menu>
-      <content>
+      <main>
         <Outlet />
-      </content>
+      </main>
     </div>
   );
 }

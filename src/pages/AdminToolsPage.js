@@ -10,7 +10,8 @@ Amplify.configure(awsconfig);
 API.configure(awsconfig);
 
 const adminStyle = {
-  padding: '20px'
+  padding: '20px',
+  backgroundColor: 'white'
 }
 
 const signoutStyle = {
@@ -39,7 +40,7 @@ function AdminToolsPage() {
           </div>
           <br/><br/>
           {
-          (value === 1 ? <DeckEntryForm user={user.attributes.sub}/> : <GameEntryForm user={user.attributes.sub} />)
+          (value === 1 ? <DeckEntryForm user={user.attributes.email}/> : <GameEntryForm user={user.attributes.email} />)
           }
         </Layout>
     )}
