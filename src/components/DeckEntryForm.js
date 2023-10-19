@@ -16,7 +16,7 @@ function DeckEntryForm({user}) {
   const [rawData, setRawData] = useState([])
   const [highestId, setHighestId] = useState(null)
   const [thisId, setThisId] = useState(null)
-  const [deckCodeAccess, setDeckCodeAccess] = useState(false)
+  //const [deckCodeAccess, setDeckCodeAccess] = useState(false)
 
   const [form] = Form.useForm();
   const player = (user === key ? 'Ouiouiman' : 'Privatemerc')
@@ -73,11 +73,11 @@ function DeckEntryForm({user}) {
       setThisId(value[0])
       let obj = rawData.find(object => object.id === value[0]);
       form.setFieldsValue(obj)
-      setDeckCodeAccess(true)
+      //setDeckCodeAccess(true)
     } else {
       setThisId(highestId)
       form.resetFields()
-      setDeckCodeAccess(false)
+      //setDeckCodeAccess(false)
     }
   }
 
@@ -117,7 +117,7 @@ function DeckEntryForm({user}) {
           message: 'Please enter deck code'
         }]}
       >
-        <Input.TextArea disabled={deckCodeAccess} placeholder="Enter deck code" />
+        <Input.TextArea placeholder="Enter deck code" />
       </Form.Item>
       <Form.Item label="Notes" name="notes" rules={[{ 
           required: true, 

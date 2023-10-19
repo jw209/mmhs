@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 
 const myAPI = 'gamesapi'
 const path = '/games'
-const key = 'e018b9e9-3367-4cf8-9f97-67b1bd037dfa'
+const key = 'jessecodes98@gmail.com'
 
 const AddNewGame = {
   value: 1,
