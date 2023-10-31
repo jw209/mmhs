@@ -22,12 +22,13 @@ function DeckList(props) {
       { 
       ouiouimanData && privatemercData ?
       <div>
-        <h1>Ouiouiman's Deck: </h1>
         {ouiouimanData.map((item, index) => (
           <div key={index}>
-            <h5 style={{fontSize: '50px', marginBottom: -2, marginTop: -5}}>{item.deckName}</h5>
+            <h5 style={{fontSize: '50px', marginBottom: -2, marginTop: -5}}>
+              {item.deckName}<span style={{color:'green'}}> ({item.player}'s deck)</span>
+            </h5>
               <CopyOutlined onClick={() => {
-                navigator.clipboard.writeText(item.deckCode);
+                navigator.clipboard.writeText(item.deckCodeCopy);
                 const updatedOpacities = { ...opacities };
                 updatedOpacities[index] = 1;
                 setOpacities(updatedOpacities);
@@ -43,10 +44,11 @@ function DeckList(props) {
             <h5>{item.notes}</h5>
           </div>
         ))}
-        <h1>PrivateMerc's Deck: </h1>
         {privatemercData.map((item, index) => (
           <div key={index}>
-            <h5>{item.deckCode}</h5>
+            <h5 style={{fontSize: '50px', marginBottom: -2, marginTop: -5}}>
+              {item.deckName}<span style={{color:'green'}}> ({item.player}'s deck)</span>
+            </h5>
             <CopyOutlined onClick={() => {
                 navigator.clipboard.writeText(item.deckCode);
                 const updatedOpacities = { ...opacities };

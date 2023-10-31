@@ -7,7 +7,37 @@ import './pageStyles.css'
 function StatsPage() {
   const [dataRetrieved, setDataRetrieved] = useState(false)
   const [gameData, setGameData] = useState([])
-  const [ouiouimanWins, setOuiouimanWins] = useState(0)
+
+  useEffect(() => {
+    API.get('gamesapi', '/games')
+    .then((res) => {
+      setGameData(res)
+      setDataRetrieved(true)
+    }).catch((error) => {
+      console.error(error)
+    })
+  }, [])
+
+  return (
+      <div>
+      {
+        !dataRetrieved
+        ? <div className='loader'>
+            <div className='lds-dual-ring' />
+          </div>
+        : <div> 
+            <LineChart data={gameData} />
+            <GameFeed data={gameData} />
+          </div>
+      }
+      </div>
+  )
+}
+
+export default StatsPage;
+
+/*
+const [ouiouimanWins, setOuiouimanWins] = useState(0)
   const [ouiouimanLosses, setOuiouimanLosses] = useState(0)
   const [privatemercWins, setPrivatemercWins] = useState(0)
   const [privatemercLosses, setPrivatemercLosses] = useState(0)
@@ -42,28 +72,12 @@ function StatsPage() {
       console.error(error)
     })
   }, [])
-
-  return (
-      <div>
-      {
-        !dataRetrieved
-        ? <div className='loader'>
-            <div className='lds-dual-ring' />
-          </div>
-        : <div> 
-            <LineChart data={gameData}/>
-            <GameFeed data={gameData}/>
-            <h1>Ouiouiman wins: {ouiouimanWins}</h1>
-            <h1>Ouiouiman losses: {ouiouimanLosses}</h1>
-            <h1>Ouiouiman winrate: {((ouiouimanWins / (ouiouimanWins+ouiouimanLosses)) * 100).toFixed(2) + '%'}</h1>
-            <br/>
-            <h1>Privatemerc wins: {privatemercWins}</h1>
-            <h1>Privatemerc losses: {privatemercLosses}</h1>
-            <h1>Privatemerc winrate: {((privatemercWins / (privatemercWins+privatemercLosses)) * 100).toFixed(2) + '%'}</h1>
-          </div>
-      }
-      </div>
-  )
-}
-
-export default StatsPage;
+  
+<h1>Ouiouiman wins: {ouiouimanWins}</h1>
+<h1>Ouiouiman losses: {ouiouimanLosses}</h1>
+<h1>Ouiouiman winrate: {((ouiouimanWins / (ouiouimanWins+ouiouimanLosses)) * 100).toFixed(2) + '%'}</h1>
+<br/>
+<h1>Privatemerc wins: {privatemercWins}</h1>
+<h1>Privatemerc losses: {privatemercLosses}</h1>
+<h1>Privatemerc winrate: {((privatemercWins / (privatemercWins+privatemercLosses)) * 100).toFixed(2) + '%'}</h1>
+*/

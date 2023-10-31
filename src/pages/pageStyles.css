@@ -4,7 +4,8 @@
   height: 100px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30vh;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .lds-dual-ring:after {
