@@ -12,7 +12,7 @@ const GameFeed = (props) => {
             ouiData && mercData ? 
             <div>
                 <Row>
-                    <Col span={12}>
+                    <Col span={10}>
                     <h1 style={{textAlign:'center'}}>Ouiouiman: </h1>
                     {ouiData.map((obj, index) => (
                         <Row key={index}>
