@@ -23,6 +23,7 @@ function App() {
           <UploadOutlined />
         </Link>
       </menu>
+      <p className='important-text'>You may notice this site isn't being updated right now. Well, thats because a new set is right around the corner so things are little stale right now! Stay tuned for card review episodes! Statistics will be added when there are actually new decks to review!</p>
       <main>
         <Outlet />
       </main>

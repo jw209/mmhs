@@ -25,7 +25,8 @@ function HomePage() {
       ? <div className='loader'>
           <div className='lds-dual-ring' />
         </div>
-      : episodes.map((episode, index) => (
+      : 
+        episodes.map((episode, index) => (
         <div key={index}>
           <div className='Episode-card'>
             <h1 className='card-heading'>{episode.title}</h1>
