@@ -1,7 +1,7 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider
 } from "react-router-dom";
 import React from 'react';
@@ -12,7 +12,7 @@ import HomePage from "./pages/HomePage";
 import DecksPage from "./pages/DecksPage";
 import AdminToolsPage from "./pages/AdminToolsPage";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
