@@ -23,7 +23,7 @@ function App() {
           <UploadOutlined />
         </Link>
       </menu>
-      <p className='important-text'>Due to unforeseen circumstances, a new episode will not be released until next week.</p>
+      {/*<p className='important-text'></p>*/}
       <main>
         <Outlet />
       </main>
